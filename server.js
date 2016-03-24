@@ -2,8 +2,6 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
-var bodyParser = require('body-parser');
-var json2csv = require('json2csv');
 var services = require('./routes/services');
 
 /**
@@ -115,9 +113,6 @@ var App = function() {
      */
     self.initializeServer = function() {   
         self.app = express();
-
-        self.app.use(bodyParser.json());
-        self.app.use(bodyParser.urlencoded({ extended: true }));
 
         self.app.use(express.static('app'));
         self.app.use(express.static('node_modules'));
