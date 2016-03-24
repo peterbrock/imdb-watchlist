@@ -2,16 +2,17 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
-
+var bodyParser = require('body-parser');
+var json2csv = require('json2csv');
+var services = require('./routes/services');
 
 /**
  *  Define the sample application.
  */
-var SampleApp = function() {
+var App = function() {
 
     //  Scope.
     var self = this;
-
 
     /*  ================================================================  */
     /*  Helper functions.                                                 */
@@ -22,6 +23,7 @@ var SampleApp = function() {
      */
     self.setupVariables = function() {
         //  Set the environment variables we need.
+
         self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
         self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
@@ -92,33 +94,36 @@ var SampleApp = function() {
     /**
      *  Create the routing table entries + handlers for the application.
      */
-    self.createRoutes = function() {
-        self.routes = { };
+    self.createRoutes = function(app) {
 
-        self.routes['/asciimo'] = function(req, res) {
-            var link = "http://i.imgur.com/kmbjB.png";
-            res.send("<html><body><img src='" + link + "'></body></html>");
-        };
-
-        self.routes['/'] = function(req, res) {
+        app.get('/', function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.send(self.cache_get('index.html') );
-        };
-    };
+        });
 
+        app.get('/api/watchlist', function (req, res) {
+            services.watchlist(function(results) {
+                res.json(results);
+            });
+        });
+
+    };
 
     /**
      *  Initialize the server (express) and create the routes and register
      *  the handlers.
      */
-    self.initializeServer = function() {
-        self.createRoutes();
-        self.app = express.createServer();
+    self.initializeServer = function() {   
+        self.app = express();
 
-        //  Add handlers for the app (from the routes).
-        for (var r in self.routes) {
-            self.app.get(r, self.routes[r]);
-        }
+        self.app.use(bodyParser.json());
+        self.app.use(bodyParser.urlencoded({ extended: true }));
+
+        self.app.use(express.static('app'));
+        self.app.use(express.static('node_modules'));
+        self.app.use(express.static('public'));
+
+        self.createRoutes(self.app);
     };
 
 
@@ -130,7 +135,6 @@ var SampleApp = function() {
         self.populateCache();
         self.setupTerminationHandlers();
 
-        // Create the express server and routes.
         self.initializeServer();
     };
 
@@ -146,14 +150,14 @@ var SampleApp = function() {
         });
     };
 
-};   /*  Sample Application.  */
+};  
 
 
 
 /**
  *  main():  Main code.
  */
-var zapp = new SampleApp();
+var zapp = new App();
 zapp.initialize();
 zapp.start();
 

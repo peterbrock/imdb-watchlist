@@ -1,3 +1,1 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
-
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+docker run -it -p 27017:27017 -v ~/mongo-visitorpal:/data/db --name creative-db mongo --smallfiles
