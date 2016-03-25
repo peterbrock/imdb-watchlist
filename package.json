@@ -28,7 +28,9 @@
     "angular-route": "^1.5.2",
     "bootstrap": "^3.3.6",
     "express": "^4.8.0",
-    "jquery": "^2.2.1"
+    "jquery": "^2.2.1",
+    "request": "latest",
+    "cheerio": "latest"
   },
   "devDependencies": {},
   "bundleDependencies": [],
