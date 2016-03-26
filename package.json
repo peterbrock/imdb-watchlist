@@ -30,7 +30,8 @@
     "express": "^4.8.0",
     "jquery": "^2.2.1",
     "request": "latest",
-    "cheerio": "latest"
+    "cheerio": "latest",
+    "moment": "latest"
   },
   "devDependencies": {},
   "bundleDependencies": [],
