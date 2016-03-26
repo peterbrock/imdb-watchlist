@@ -32,9 +32,9 @@ var prepareResults = function(callback, filmMap) {
         if (!a.hasOwnProperty("releaseDate") && !b.hasOwnProperty("releaseDate")) {
             return compareTitles(a,b);
         } else if (!a.hasOwnProperty("releaseDate")) {
-            return 1;
-        } else if (!b.hasOwnProperty("releaseDate")) {
             return -1;
+        } else if (!b.hasOwnProperty("releaseDate")) {
+            return 1;
         }
         
         //ok we've made it this far, they've both got titles!
@@ -105,13 +105,14 @@ var processWatchlists = function(callback, watchlists) {
             var film = watchListResult.results[j];
             var filmTitle = film.title;
             var filmId = film.id;
+            var filmUrl = film.url;
             
             //get to the map if it's not already in, with the user that selected it
             if (filmId in filmMap) {
                 filmMap[filmId].users.push({"name":name, "id": id});
             } else {
                 //note, we're keying on filmId but also adding it into the object - thats because we'll remove these from the hashmap later before sending
-                filmMap[filmId] = {"filmTitle" : filmTitle, "filmId" : filmId, "users": [{"name": name, "id": id}]};
+                filmMap[filmId] = {"filmTitle" : filmTitle, "filmId" : filmId, "filmUrl" : filmUrl, "users": [{"name": name, "id": id}]};
             }
         }
     }
@@ -124,7 +125,9 @@ exports.watchlist = function(callback) {
 
     //userIds are hardcoded at the moment - could be saved in Mongo though?
     var userIds = [{"name": "Pete", "id": 'ur62921299'}, 
-                   {"name": "Maxwell", "id": 'ur62921299'}];
+                   {"name": "Paul", "id": 'ur57869202'},
+                   {"name": "Fearn", "id": 'ur46883936'},
+                   {"name": "Mark", "id": 'ur41351654'}];
     
     var numberOfWatchlists = userIds.length;
     var numberOfWatchlistsReturned = 0;
@@ -157,9 +160,10 @@ exports.watchlist = function(callback) {
                         var data = $(this);
                         var title = data.find('a').text();
                         var url = data.find('a').attr('href');
+                        var absoluteUrl = 'http://www.imdb.com/' + url;
                         var id = url.substr(7, 9);
 
-                        var element = {"title": title, "id":id};
+                        var element = {"title": title, "id":id, "url":absoluteUrl};
 
                         watchlistResult.results.push(element);
                     })
