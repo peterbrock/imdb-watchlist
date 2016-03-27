@@ -9,8 +9,8 @@ angular.module('watchlistApp.controllers', []).controller('WatchlistController',
 			$log.debug('WatchlistController loaded.');
 			
             var resizeBackground = function() {
-                var height = $(window).height();
-                var width = $(window).width();
+                var height = window.innerHeight || $(window).height();
+                var width = window.innerWidth || $(window).width();
                 $('#bg-content').css({'height':height,'width':width}); 
             }
             
