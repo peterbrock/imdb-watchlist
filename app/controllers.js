@@ -2,19 +2,18 @@
 
 angular.module('watchlistApp.controllers', []).controller('WatchlistController',
 		[ '$http', '$log', '$scope', function($http, $log, $scope) {
-			$scope.locations = [];
+			$scope.results = [];
 
 			$log.debug('WatchlistController loaded.');
 			
-            /*
 			$http({
 				method : 'GET',
-				url : 'api/deviceLocation'
+				url : 'api/watchlist'
 			}).then(function(response) {
-				$scope.locations = response.data;		
+				$scope.results = response.data;		
 			}, function(response) {
 				$log.error("Error occured! " + response);
 			})
-            */
+            
 
 		} ]);

@@ -2,3 +2,96 @@
 body {
 
 }
+
+.container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+/** Header **/
+.page-header {
+    margin: 0px;
+    padding: 15px;
+    
+    font-family: impact;
+    font-size: 3.0em;
+    text-align: center;
+    
+    background-color: #D8B700;
+    color: black;
+    border-bottom-color: black;
+}
+
+.sub-header {
+    font-size: 0.5em;
+}
+
+h1 {
+    margin: 0px;
+}
+
+
+/** Body **/
+.content {
+    
+    padding: 10px;
+    
+}
+
+.user-legend {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 3px;
+}
+
+.user-circle {
+    margin: auto;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    font-size:20px;
+    color:#fff;
+    line-height:30px;
+    text-align:center;
+    background:#000
+}
+
+.user-text {
+    font-size: 10px;
+    text-align: center;
+}
+
+/** Users **/
+.pete-bg {
+    color: white;
+    background-color: #b32d00;
+}
+.pete {
+    color: #b32d00;
+}
+
+.paul-bg {
+    color: white;
+    background-color: #0099cc;
+}
+.paul{
+    color: #0099cc;
+}
+
+.danforth-bg {
+    color: white;
+    background-color: #339933;
+}
+.danforth {
+    color: #339933;
+}
+
+.fearn-bg {
+    color: white;
+    background-color: #e6b800;
+}
+.fearn {
+    color: #e6b800;
+}
