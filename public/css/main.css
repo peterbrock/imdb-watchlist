@@ -37,15 +37,28 @@ h1 {
 
 /** Body **/
 .content {
-    
-    padding: 10px;
-    
+    padding: 10px;    
+}
+
+#bg-content {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position:fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
 }
 
 .user-legend {
     margin-top: 10px;
     padding: 10px;
-    background-color: #eee;
+    background-color: rgba(238, 238, 238, 0.85);
     border-radius: 3px;
 }
 
@@ -74,7 +87,7 @@ h1 {
 .watchlist {
     margin-top: 10px;
     padding: 10px;
-    background-color: #eee;
+    background-color: rgba(238, 238, 238, 0.85);
     border-radius: 3px;
 }
 

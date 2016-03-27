@@ -8,11 +8,34 @@ angular.module('watchlistApp.controllers', []).controller('WatchlistController',
             
 			$log.debug('WatchlistController loaded.');
 			
+            var resizeBackground = function() {
+                var height = $(window).height();
+                var width = $(window).width();
+                $('#bg-content').css({'height':height,'width':width}); 
+            }
+            
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            
+            $(window).resize(function() {
+                resizeBackground();
+            });
+            
 			$http({
 				method : 'GET',
 				url : 'api/watchlist'
 			}).then(function(response) {
 				$scope.results = response.data;
+                
+                //generate random background image
+                var int = getRandomInt(1, 6);
+                
+                $("#bg-content").css("background-image", "url(/images/bg" + int + ".jpg)");
+                $("#bg-content").fadeTo(2000, 0.85);
+                
+                resizeBackground();
+                
 			}, function(response) {
 				$log.error("Error occured! " + response);
 			})
