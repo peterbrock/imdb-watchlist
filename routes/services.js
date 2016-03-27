@@ -109,13 +109,14 @@ var processWatchlists = function(callback, watchlists) {
             var filmTitle = film.title;
             var filmId = film.id;
             var filmUrl = film.url;
+            var filmImg = film.imgUrl;
             
             //get to the map if it's not already in, with the user that selected it
             if (filmId in filmMap) {
                 filmMap[filmId].users.push({"name":name, "id": id});
             } else {
                 //note, we're keying on filmId but also adding it into the object - thats because we'll remove these from the hashmap later before sending
-                filmMap[filmId] = {"filmTitle" : filmTitle, "filmId" : filmId, "filmUrl" : filmUrl, "users": [{"name": name, "id": id}]};
+                filmMap[filmId] = {"filmTitle" : filmTitle, "filmId" : filmId, "filmUrl" : filmUrl, "filmImg" : filmImg, "users": [{"name": name, "id": id}]};
             }
         }
     }
@@ -166,7 +167,11 @@ exports.watchlist = function(callback) {
                         var absoluteUrl = 'http://www.imdb.com/' + url;
                         var id = url.substr(7, 9);
 
-                        var element = {"title": title, "id":id, "url":absoluteUrl};
+                        //now try to find the image url
+                        var imgTag = 'img[data-tconst="'+id+'"]';
+                        
+                        var imageUrl = $(imgTag).last().attr('loadlate');
+                        var element = {"title": title, "id":id, "url":absoluteUrl, "imgUrl":imageUrl};
 
                         watchlistResult.results.push(element);
                     })

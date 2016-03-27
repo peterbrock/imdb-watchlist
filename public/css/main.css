@@ -91,6 +91,11 @@ ul.watchlist-list {
     border-bottom: 1px solid #ddd;
 }
 
+.watchlist-film-img {
+    width: 60px;
+    height: auto;
+}
+
 .watchlist-film-title {
     font-size: 20px;
     font-style: italic;
