@@ -12,6 +12,9 @@ var prepareResults = function(callback, filmMap) {
 
         var filmId = Object.keys(filmMap)[j];
         var film = filmMap[filmId];
+        
+        film.users.sort();
+        
         results.push(film);
     }
 
