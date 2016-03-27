@@ -36,14 +36,14 @@
                     <li ng-repeat="film in results">
                         
                         <div class="watchlist-film row" ng-hide="shouldHideFilm(film)">
-                            <div class="col-xs-1">
+                            <div class="col-xs-3 col-sm-2 watchlist-film-img-container">
                                 <img class="watchlist-film-img" ng-src="{{film.filmImg}}" />
                             </div>
-                            <div class="col-xs-8">
+                            <div class="col-xs-9 col-sm-8">
                                 <a href="{{film.filmUrl}}" class="watchlist-film-title">{{film.filmTitle}}</a>&nbsp;&nbsp;<span ng-show="film.users.length > 2" class="glyphicon glyphicon-fire"></span><br/>
                                 <span class="watchlist-film-release" ng-class="getFilmReleaseStyle(film)">{{getFilmRelease(film)}}</span>
                             </div>
-                            <div class="col-xs-3 watchlist-user-row">
+                            <div class="col-sm-2 watchlist-user-row">
                                 <div ng-repeat="user in film.users" ng-class="getUserCircleStyle(user)">{{getUserCircleName(user)}}</div>
                             </div>
                         </div>

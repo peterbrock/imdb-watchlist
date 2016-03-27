@@ -104,9 +104,17 @@ ul.watchlist-list {
     border-bottom: 1px solid #ddd;
 }
 
+.watchlist-film-img-container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 .watchlist-film-img {
     width: 60px;
     height: auto;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
 }
 
 .watchlist-film-title {
@@ -131,6 +139,7 @@ ul.watchlist-list {
 .watchlist-user-circle {
     display: inline-block;
     margin-right: 5px;
+    margin-bottom: 5px;
 }
 
 .glyphicon-fire {        
