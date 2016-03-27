@@ -8,17 +8,11 @@ angular.module('watchlistApp.controllers', []).controller('WatchlistController',
             
 			$log.debug('WatchlistController loaded.');
 			
-            var lastHeight;
             var resizeBackground = function() {
                 
                 var height = window.innerHeight || $(window).height();
                 var width = window.innerWidth || $(window).width();
-                
-                //this is because iOS fires this event on scrolling (!)
-                if (height != lastHeight) {
-                    lastHeight = height;
-                    $('#bg-content').css({'height':height,'width':width}); 
-                }
+                $('#bg-content').css({'height':height,'width':width}); 
             }
             
             function getRandomInt(min, max) {
