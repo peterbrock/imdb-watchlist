@@ -7,10 +7,14 @@
 
 	app.config(function($routeProvider) {
 		$routeProvider.when("/", {
-			templateUrl : "watchlist.html",
+			templateUrl : "watchlist-lite.html",
 			controller : "WatchlistController",
 			controllerAs : "watchlistCtrl"
-		})
+		}).when("/wip", {
+            templateUrl : "watchlist.html",
+			controller : "WatchlistController",
+			controllerAs : "watchlistCtrl"
+        })
 	});
 
 })();

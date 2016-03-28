@@ -1,0 +1,55 @@
+<div class="page-header">
+    <!--<div class="btn-toolbar pull-right"><button class="btn btn-filter"><span class="glyphicon glyphicon-filter btn-filter-glyph"></span></button></div>-->
+	<h1 class="main-header"><span class="sub-header">The </span>Ultimate Watchlist</h1>
+    
+</div>
+
+<div class="content">
+    
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            
+            <div class="user-legend">
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-2"><div class="user-circle pete-bg">J</div><div class="user-text pete">Pete</div></div>
+                    <div class="col-xs-2"><div class="user-circle paul-bg">P</div><div class="user-text paul">Paul</div></div>
+                    <div class="col-xs-2"><div class="user-circle danforth-bg">M</div><div class="user-text danforth">Mark</div></div>
+                    <div class="col-xs-2"><div class="user-circle fearn-bg">F</div><div class="user-text fearn">Fearn</div></div>
+                    <div class="col-xs-2"></div>
+                </div>
+                <div class="release-checkbox">
+                    
+                        <input type="checkbox" ng-model="hideNoRelease"> Hide films that have been released, or have no release date
+                    
+                </div>
+            </div>
+            
+            <div class="watchlist">
+                <div class="watchlist-loading" ng-show="!results.length">
+                    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+                </div>
+                <ul class="watchlist-list">
+                    <li ng-repeat="film in results">
+                        
+                        <div class="watchlist-film row" ng-hide="shouldHideFilm(film)">
+                            <div class="col-xs-9 col-sm-8">
+                                <a href="{{film.filmUrl}}" class="watchlist-film-title">{{film.filmTitle}}</a>&nbsp;&nbsp;<span ng-show="film.users.length > 2" class="glyphicon glyphicon-fire"></span><br/>
+                                <span class="watchlist-film-release" ng-class="getFilmReleaseStyle(film)">{{getFilmRelease(film)}}</span>
+                            </div>
+                            <div class="col-xs-3 col-sm-4 watchlist-user-row">
+                                <div ng-repeat="user in film.users" ng-class="getUserCircleStyle(user)">{{getUserCircleName(user)}}</div>
+                            </div>
+                        </div>
+                        
+                        
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+</div>
